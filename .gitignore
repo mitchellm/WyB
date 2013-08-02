@@ -1,0 +1,5 @@
+.nbproject
+*~
+*.geany
+.project
+.buildpath

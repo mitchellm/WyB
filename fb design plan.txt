@@ -1,0 +1,15 @@
+log the user in  {
+	sets the oauth id and provider, along with the user's name and id
+	inserts a row into db if this oauth id doesn't exist (no password) - therefore, user can log back in with same facebook acc, but cannot login any other way.
+}
+
+
+data we have {
+	user's full name along with their oauth information
+}
+
+what needs to be done {
+	allow them to set a password to the account so they can log in with the traditional method 
+	give them a temporary name as a fb user; possibly a 12 digit unique id (will be used as their name in beefs and the database)
+	do not allow people to login to an account without a password and an oauth id
+}

@@ -1,0 +1,137 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 20, 2012 at 03:03 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `wyb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beefs`
+--
+
+CREATE TABLE IF NOT EXISTS `beefs` (
+  `bid` int(255) NOT NULL AUTO_INCREMENT,
+  `heats` int(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  `author` varchar(15) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`bid`),
+  UNIQUE KEY `bid` (`bid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=367 ;
+
+--
+-- Dumping data for table `beefs`
+--
+
+INSERT INTO `beefs` (`bid`, `heats`, `timestamp`, `author`, `content`) VALUES
+(362, 0, 1329703099, '23', 'Spamming 4 beefs to fill the first page of results :|'),
+(363, 0, 1329703099, '23', 'Spamming 4 beefs to fill the first page of results :|'),
+(364, 0, 1329703099, '23', 'Spamming 4 beefs to fill the first page of results :|'),
+(365, 0, 1329703100, '23', 'Spamming 4 beefs to fill the first page of results :|'),
+(366, 0, 1329703179, '26', 'This is a post from a facebook user!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `heats`
+--
+
+CREATE TABLE IF NOT EXISTS `heats` (
+  `uid` int(255) NOT NULL,
+  `bid` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `heats`
+--
+
+INSERT INTO `heats` (`uid`, `bid`) VALUES
+(3, 20),
+(3, 46),
+(3, 47),
+(3, 48),
+(3, 115),
+(3, 132),
+(9, 242),
+(9, 243),
+(9, 240),
+(9, 241),
+(12, 254),
+(12, 255);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `sid` varchar(255) NOT NULL,
+  `uid` int(255) NOT NULL,
+  `ip` varchar(25) NOT NULL,
+  `expiry` int(255) NOT NULL,
+  `timestamp` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`sid`, `uid`, `ip`, `expiry`, `timestamp`) VALUES
+('841b22ab1ce559e78eb3d4ebd79224e9f952aca4d93310a26562f70bf81e40e258f1bc6dc082d374983cbb1761ec73fd7f6c4c79b64d0dd872b77e1a0ce1ec54', 25, '127.0.0.1', 1329875527, 1329702727),
+('f7c0950408e39a7e65fbea1f61f6e57f04b054c9a8520ce6d8287fd4d084796d1676af7dd497fd8b24ab67f30c2dc868c92d5c0eaab18241099362847881469b', 23, '127.0.0.1', 1329875886, 1329703086),
+('25ac710fb685bdb67e83ea5c4c226b581b3a85cb0b435a7f6158a515a0f9ae636897a73aaa4d6b039d339bd7d816086577cbad0f122d952a222995af8ceb7544', 26, '127.0.0.1', 1329875948, 1329703148);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` varchar(25) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `uid` int(255) NOT NULL AUTO_INCREMENT,
+  `lastlogin` varchar(255) NOT NULL,
+  `lastbeef` varchar(255) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `oauth_provider` varchar(10) NOT NULL,
+  `oauth_uid` text NOT NULL,
+  `fb_username` varchar(255) NOT NULL,
+  `using_fb` int(11) NOT NULL,
+  `avatar` varchar(100) NOT NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `email`, `uid`, `lastlogin`, `lastbeef`, `ip`, `oauth_provider`, `oauth_uid`, `fb_username`, `using_fb`, `avatar`) VALUES
+('Sawyer', '3ae748774a1f233c9bf522fc2b3d0acf11404873', 'sawyera@live.com', 4, 'Unknown', 'Unknown', '', '', '', '', 0, '0'),
+('Mitchell', '296e5205c231053ca4080da1da5b032d36146c4a', 'mitchell@fl3x.co', 12, '02/19/12 @ 11:15 PM CET', 'Unknown', '127.0.0.1', '', '', '', 0, '0'),
+('Hacker', 'f0c0b252033a124482d8560c157c7c90d80ca708', 'hacker@hacks.com', 23, '02/20/12 @ 2:58 AM CET', '02/20/12 @ 2:58 AM CET', '127.0.0.1', '', '', '', 0, 'images/default_avatar.png'),
+('fb_4f41a8ebdcd54', 'c0a2f0771efc4eea6e3073118454bf50731de08e', '', 26, '02/20/12 @ 2:59 AM CET', '02/20/12 @ 2:59 AM CET', '127.0.0.1', 'facebook', '100001123339388', 'Mitchell Murphy', 1, 'http://graph.facebook.com/100001123339388/picture');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
